@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build hash.cpp",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "hash.cpp",
+        "-o",
+        "hash.exe"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Run with input/output redirection",
+      "type": "shell",
+      "command": ".\\hash.exe < input.txt > output.txt",
+      "dependsOn": "Build hash.cpp",
+      "problemMatcher": []
+    }
+  ]
+}

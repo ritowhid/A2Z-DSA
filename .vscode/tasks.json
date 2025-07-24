@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run C++ with input/output redirection",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "${file}",
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Execute with redirected input/output",
+      "type": "shell",
+      "command": "${fileDirname}\\${fileBasenameNoExtension}.exe < ${fileDirname}\\input.txt > ${fileDirname}\\output.txt",
+      "dependsOn": "Run C++ with input/output redirection",
+      "problemMatcher": []
+    }
+  ]
+}
