@@ -1,43 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void bubble_sort(int arr[], int n)
-{
-    // Base case
-    if (n == 1)
-        return;
+// Recursive function to perform Bubble Sort
+void bubble_sort(int arr[], int n) {
+    // Base Case: If the array size is 1, it's already sorted
+    if (n == 1) return;
 
-    // One pass of bubble sort
-    for (int j = 0; j <= n - 2; j++)
-    {
-        if (arr[j] > arr[j + 1])
-        {
-            int temp = arr[j];
-            arr[j] = arr[j + 1];
-            arr[j + 1] = temp;
+    // Perform one pass of Bubble Sort: push the largest element to the end
+    for (int j = 0; j <= n - 2; j++) {
+        // Swap if elements are in the wrong order
+        if (arr[j] > arr[j + 1]) {
+            int temp = arr[j + 1];
+            arr[j + 1] = arr[j];
+            arr[j] = temp;
         }
     }
 
-    // Recursive call for remaining array
+    // Recur for the remaining unsorted part (one less than before)
     bubble_sort(arr, n - 1);
 }
 
-int main()
-{
-    int n;
-    cout << "Enter number of elements: ";
-    cin >> n;
+int main() {
+    int arr[] = {13, 46, 24, 52, 20, 9};
+    int n = sizeof(arr) / sizeof(arr[0]);
 
-    int arr[n];
-    cout << "Enter " << n << " elements: ";
-    for (int i = 0; i < n; i++)
-        cin >> arr[i];
-
-    bubble_sort(arr, n);
-
-    cout << "Sorted array: ";
+    cout << "Before Using Bubble Sort: " << endl;
     for (int i = 0; i < n; i++)
         cout << arr[i] << " ";
+    cout << endl;
+
+    // Call the recursive Bubble Sort function
+    bubble_sort(arr, n);
+
+    cout << "After Using Bubble Sort: " << endl;
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+    cout << endl;
 
     return 0;
 }

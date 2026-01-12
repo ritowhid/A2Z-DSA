@@ -1,43 +1,43 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void insertion_sort(int arr[], int n)
-{
-    // Base case
-    if (n <= 1)
-        return;
+// Recursive insertion sort function
+void insertion_sort(int arr[], int i, int n) {
+    // Base Case: if index reaches the size, return
+    if (i == n) return;
 
-    // Sort first n-1 elements
-    insertion_sort(arr, n - 1);
-
-    // Insert last element at its correct position
-    int last = arr[n - 1];
-    int j = n - 2;
-
-    while (j >= 0 && arr[j] > last)
-    {
-        arr[j + 1] = arr[j];
+    int j = i;
+    // Shift the element to the left while it's smaller than its predecessor
+    while (j > 0 && arr[j - 1] > arr[j]) {
+        // Swap arr[j] and arr[j-1]
+        int temp = arr[j - 1];
+        arr[j - 1] = arr[j];
+        arr[j] = temp;
         j--;
     }
-    arr[j + 1] = last;
+
+    // Recur for the next index
+    insertion_sort(arr, i + 1, n);
 }
 
-int main()
-{
-    int n;
-    cout << "Enter number of elements: ";
-    cin >> n;
+int main() {
+    int arr[] = {13, 46, 24, 52, 20, 9};
+    int n = sizeof(arr) / sizeof(arr[0]);
 
-    int arr[n];
-    cout << "Enter " << n << " elements: ";
-    for (int i = 0; i < n; i++)
-        cin >> arr[i];
-
-    insertion_sort(arr, n);
-
-    cout << "Sorted array: ";
-    for (int i = 0; i < n; i++)
+    cout << "Before Using Insertion Sort: " << endl;
+    for (int i = 0; i < n; i++) {
         cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    // Call recursive insertion sort
+    insertion_sort(arr, 0, n);
+
+    cout << "After Using Insertion Sort: " << endl;
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
 
     return 0;
 }
